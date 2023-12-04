@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.metrics import accuracy_score, confusion_matrix, recall_score, precision_score, roc_auc_score
 
-st.set_page_config(page_title="Bank Customer churn Detection", page_icon= ":bar_chart:")
+st.set_page_config(page_title="Bank Customer churn Detection 📊", page_icon= "🏬")
 df= pd.read_csv("../data_raw/Customer-Churn-Records.csv")
 
 seleccion = st.sidebar.selectbox("Selecciona menu", ['Home','Datos',"Modelo"])
@@ -32,13 +32,6 @@ elif seleccion == "Datos":
     filtro = st.sidebar.selectbox("Selecciona país", df['Geography'].unique())
     df_filtered = df[df['Geography']==filtro]
     st.write(df_filtered)
-
-    # file = open("heatmap.html", "r")
-    # c.html(file.read(), height=400)
-    # df_filtered.rename(columns={"latidtud": "latitud", "longitud": "longitud"}, inplace=True)
-
-    # st.map(df_filtered)
-
     filtro_2 = st.sidebar.radio("Elige el país", [1,2,3])
 
 elif seleccion == "Modelo":
@@ -56,13 +49,13 @@ elif seleccion == "Modelo":
     st.write("Predicciones del modelo:")
     st.write(modelo_importado.predict(X_test))
     st.write("Evaluación de las métricas del modelo:")
-    st.write("accuracy_score", accuracy_score(y_pred_test, y_test))
-    st.write("precision_score", precision_score(y_pred_test, y_test))
-    st.write("recall_score", recall_score(y_pred_test, y_test))
-    st.write("roc_auc_score", roc_auc_score(y_pred_test, y_test))
-    st.write("confusion_matrix\n", confusion_matrix(y_pred_test, y_test))
+    st.write("accuracy_score", accuracy_score(y_test, y_pred_test))
+    st.write("precision_score", precision_score(y_test, y_pred_test))
+    st.write("recall_score", recall_score(y_test, y_pred_test))
+    st.write("roc_auc_score", roc_auc_score(y_test, y_pred_test))
+    st.write("confusion_matrix\n", confusion_matrix(y_test, y_pred_test))
 
-    conf_matrix_test = confusion_matrix(y_pred_test, y_test, normalize= "true")
+    conf_matrix_test = confusion_matrix(y_test, y_pred_test, normalize= "true")
     st.write("Matriz de Confusión:")
     st.write("Visualización de la Matriz de Confusión:")
     
