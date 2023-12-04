@@ -44,7 +44,7 @@ classifier: !!python/object:sklearn.ensemble._forest.RandomForestClassifier
   random_state: null
   verbose: 0
   warm_start: false
-classifier__max_depth: 10
-classifier__n_estimators: 100
+classifier__max_depth: 5
+classifier__n_estimators: 50
 pca__n_components: null
 scaler: null
