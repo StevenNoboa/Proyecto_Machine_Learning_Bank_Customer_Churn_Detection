@@ -224,7 +224,7 @@ elif seleccion == "Data Science":
         pipe = pd.read_csv("../data_csv/pipeline.csv")
         parametros = pd.read_csv("../data_csv/parametros.csv")
         st.write(pipe)
-        st.write(parametros)# Información sobre el mejor clasificador
+        st.write(parametros)
 
         st.write("Una vez generado el pipeline y los parámetros de espacio de búsqueda, introducimos estos en un:")
         st.write("- clf_gs.GreadSearchCV:estimator=pipe, param_grid=search_space, cv=5, scoring='accuracy', verbose=3, n_jobs=-1")
@@ -238,7 +238,7 @@ elif seleccion == "Data Science":
         best_params_info = "- Mejores parámetros: {'classifier': RandomForestClassifier(), 'classifier__max_depth': 5, 'classifier__n_estimators': 100, 'scaler': StandardScaler(), 'selectkbest__k': 9}"
         st.write(best_params_info)
 
-    with st.expander("4. Evaluación y resultados en el Test de Train_Churn"):
+    with st.expander("4 Evaluación y resultados en el Test de Train_Churn"):
         filename = '../models/finished_model_gs'
         with open(filename, 'rb') as archivo_entrada:
             modelo_importado_1 = pickle.load(archivo_entrada)
@@ -281,7 +281,7 @@ elif seleccion == "Data Science":
         plt.ylabel('Precision')
         plt.title('Precision-Recall Curve')
         st.pyplot(fig)
-    with st.expander("4 Evaluación y resultados en el Test_Churn"):
+    with st.expander("4.1 Evaluación y resultados en el Test_Churn"):
         df_test = pd.read_csv("../data_processed/Test_Churn_processed.csv")
         st.write(df_test.head())
         X_t = df_test.drop(columns=["Exited"])
@@ -346,7 +346,7 @@ elif seleccion == "Data Science":
         8. **Categoría de Puntaje de Crédito (CreditScore Category):** Con una importancia del 1.16%, la categoría de puntaje de crédito también contribuye al modelo, pero en menor medida.
         9. **Tipo de Tarjeta (Card Type):** Con una importancia del 1.08%, el tipo de tarjeta es la característica menos influyente en el modelo.
         """)
-    with st.expander("Conclusiones"):
+    with st.expander("6 Conclusiones"):
         st.title("Conclusiones generales del análisis y modelado.")
         ## Demografía
         st.header("1. Demografía:")
@@ -392,11 +392,13 @@ elif seleccion == "Clientes":
         return modelo_importado_1.predict(features)
 
     # Streamlit Cliente
-    st.title("Aplicación de Retención de Clientes")
-
+    st.title("Negocio: Aplicación de Retención de Clientes")
+    img = Image.open("../img/img1.png")
+    st.image(img)
     # Sidebar con opciones
     st.sidebar.header("Opciones")
-    show_data = st.sidebar.checkbox("Mostrar datos procesados")
+    show_data = st.sidebar.checkbox("Mostrar datos procesados por Data Science")
+    st.sidebar.header("Pruebe el modelo:")
     feature_columns = st.sidebar.multiselect("Seleccionar columnas", X_t.columns)
 
     # Mostrar datos procesados si se selecciona
