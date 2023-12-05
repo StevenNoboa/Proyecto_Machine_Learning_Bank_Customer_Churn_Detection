@@ -1,0 +1,4 @@
+Step,Object
+scaler,StandardScaler()
+selectkbest,SelectKBest()
+classifier,RandomForestClassifier()
